@@ -1,0 +1,1 @@
+"""Trading system MVP package."""
