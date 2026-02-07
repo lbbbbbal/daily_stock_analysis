@@ -54,8 +54,8 @@ class RiskEngine:
             return RiskCheckResult(approved=False, reason="stop loss distance out of bounds")
 
         new_positions = state.positions_count + 1
-        if new_positions < self.min_positions or new_positions > self.max_positions:
-            return RiskCheckResult(approved=False, reason="positions count outside 3-6 range")
+        if new_positions > self.max_positions:
+            return RiskCheckResult(approved=False, reason="positions count exceeds max")
 
         leverage = (state.exposure + intent.size) / max(state.equity, 1e-6)
         if leverage > self.max_leverage:
